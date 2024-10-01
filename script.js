@@ -35,27 +35,15 @@ const EventHandler = function () {
         bestScore = score;
         document.querySelector('.highscore').textContent = bestScore;
       }
-      // Input is too high
-    } else if (guessingNumber > target) {
-      if (score > 1) {
-        document.querySelector('.guess-message').textContent = 'Слишком много';
-        score--;
-        document.querySelector('.score').textContent = score;
-      } else {
-        document.querySelector('.guess-message').textContent = 'GAME OVER';
-        document.querySelector('.score').textContent = 0;
-      }
-
-      // Input is too low
-    } else if (guessingNumber < target) {
-      if (score > 1) {
-        document.querySelector('.guess-message').textContent = 'Слишком мало';
-        score--;
-        document.querySelector('.score').textContent = score;
-      } else {
-        document.querySelector('.guess-message').textContent = 'GAME OVER';
-        document.querySelector('.score').textContent = 0;
-      }
+      // Input is wrong
+    } else if (guessingNumber !== target && score > 1) {
+      document.querySelector('.guess-message').textContent =
+        guessingNumber > target ? 'Слишком много' : 'Слишком мало';
+      score--;
+      document.querySelector('.score').textContent = score;
+    } else {
+      document.querySelector('.guess-message').textContent = 'GAME OVER';
+      document.querySelector('.score').textContent = 0;
     }
   }
 };
